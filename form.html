@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Prothèses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fc;
+      color: #040404;
+      font-size: 1.4rem;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h3 {
+      color: #0075FF;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-container,
+    .filters-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 1.4rem;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .filter-input {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 1.4rem;
+    }
+
+    .prosthesis-item {
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .prosthesis-item p {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h3>Ajouter une Nouvelle Prothèse</h3>
+      <form id="addProthesisForm">
+        <label for="patientName">Nom du patient:</label>
+        <input type="text" id="patientName" placeholder="Entrez le nom du patient" required>
+
+        <label for="type">Type de prothèse:</label>
+        <input type="text" id="type" placeholder="Type de prothèse" required>
+
+        <label for="orderDate">Date de commande:</label>
+        <input type="date" id="orderDate" required>
+
+        <label for="deliveryDate">Date prévue de livraison:</label>
+        <input type="date" id="deliveryDate" required>
+
+        <label for="prosthetist">Prothésiste:</label>
+        <input type="text" id="prosthetist" placeholder="Nom du prothésiste" required>
+
+        <button type="submit">Ajouter Prothèse</button>
+      </form>
+    </div>
+
+    <div class="filters-container">
+      <h3>Rechercher des Prothèses</h3>
+      <div class="filters">
+        <input
+          type="text"
+          id="searchType"
+          class="filter-input"
+          placeholder="Rechercher par type de prothèse"
+        >
+        <input
+          type="text"
+          id="searchPatient"
+          class="filter-input"
+          placeholder="Rechercher par nom du patient"
+        >
+        <input
+          type="text"
+          id="searchStatus"
+          class="filter-input"
+          placeholder="Rechercher par statut"
+        >
+      </div>
+    </div> 
+
+    <div id="prosthesis-list"></div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>
