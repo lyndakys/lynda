@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des Prothèses</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+  background-image: url('u.png'); /* Assurez-vous que l'image est bien placée */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  color: #040404;
+  font-size: 1.4rem; /* Base font size (14px) */
+}
+    
+
+  
+  
+    .header {
+  background: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
+  backdrop-filter: blur(10px); /* Effet flou */
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(94, 227, 254, 0.405);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h2{
+    margin: 30px;
+    font-size: 4.0;
+}
+
+.logo img {
+  
+  margin-top: -12px;
+  height: 40px; /* Matches image logo size */
+}
+
+.logo h1 {
+  margin-left: -15px;
+  
+
+  font-size: 2rem; /* Regular font size */
+  font-weight: 400; /* Regular weight for "Cabinet" */
+  color: #000;
+}
+
+.logo .highlight {
+  
+  color: #0075FF;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 20px; /* Espacement entre les liens */
+}
+
+.nav a {
+  color: #353535;
+  text-decoration: none;
+  font-size: 1.3rem; /* Taille de police: 16px */
+  font-weight: 500; /* Medium */
+  padding: 5px 10px; 
+ 
+}
+
+.nav a:hover {
+  color: #0075FF;
+  border-bottom: 2px solid #0075FF; /* Ligne en bas pour hover */
+}
+
+.nav a:active {
+  transform: scale(1.1); /* Zoom effect on click */
+}
+
+/* Cercle de profil */
+.profile-circle {
+  width: 35px; /* Taille réduite */
+  height: 35px;
+  background: rgba(255, 255, 255, 0.8); /* Effet foggy */
+  backdrop-filter: blur(10px); /* Frosted glass */
+  color: #0075FF;
+  font-size: 1.6rem; /* Taille de police: 16px */
+  font-weight: bold;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(154, 157, 243, 0.275);
+}
+
+
+    .gest {
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin: 50px;
+        text-align: center;
+      font-size: 3rem;
+      color: #0076fd;
+      font-weight: 5.0;
+    }
+
+    .protheses-list, .payment-tracking, .search-filters,  {
+      margin-bottom: 60px;
+      margin: right 50%; ;
+    }
+      .alerts-history {
+           margin-bottom: 60px;
+          margin-top:60px;
+        
+      }
+
+    .protheses-list table,
+    .payment-tracking table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color:#489af8;
+      color: white;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 20px 0;
+        position: absolute;
+        top:100px;
+        right:20px;
+        width:150px;
+        
+    }
+
+    button {
+      background-color: #4db7fd;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4db7fd;
+    }
+
+    .search-filters input {
+      padding: 10px;
+      margin: 0 10px;
+      width: 30%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .dropdown {
+  position: relative;
+}
+
+.suivre {
+  color: #353535;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  transition: color 0.3s;
+  margin-top: 5px;
+}
+
+.suivre:hover {
+  color: #0075FF;
+}
+
+.suivre-menu {
+  display: none;
+  position: absolute;
+  top: 35px; /* Ajusté selon la hauteur du header */
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9); /* Effet de transparence */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  list-style: none;
+  padding: 10px 0;
+  z-index: 1000;
+  min-width: 180px;
+}
+
+.suivre-menu li {
+  padding: 8px 16px;
+}
+
+.suivre-menu li a {
+  color: #353535;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+
+.suivre-menu li a:hover {
+  background-color: rgba(0, 117, 255, 0.1);
+  border-radius: 4px;
+}
+
+.dropdown:hover .suivre-menu {
+  display: block;
+}
+  </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+          <div class="logo">
+            <img src="tooth-icon.jpg.png" alt="Logo">
+            <h1>Cabinet<span class="highlight">Plus</span></h1>
+          </div>
+          <nav class="nav">
+            <a href="#">Accueil</a>
+            <a href="#">Patients</a>
+            <a href="#">Prothèses</a>
+            <a href="#">Calendrier</a>
+            <div class="dropdown">
+              <a href="#suivre" class="suivre" aria-haspopup="true">Suivre</a>
+              <ul class="suivre-menu">
+                <li><a href="#suivi-produits">Suivi des Produits</a></li>
+                <li><a href="#suivi-achats">Suivi des Achats</a></li>
+                <li><a href="#suivi-protheses">Suivi des Prothèses</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="profile-circle">L</div>
+        </div>
+      </header>
+  
+    <h1 class="gest" >Gestion des Prothèses</h1>
+  
+  <!-- Filtres de recherche -->
+  <section class="search-filters">
+    <input type="text" id="searchType" placeholder="Filtrer par Type de Prothèse">
+    <input type="text" id="searchPatient" placeholder="Filtrer par Patient">
+    <input type="text" id="searchStatus" placeholder="Filtrer par Statut">
+  </section>
+
+  <div class="container">
+    <!-- Liste des prothèses -->
+    <section class="protheses-list">
+      <h2>Liste des Prothèses</h2>
+      <table id="prosthesisTable">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Statut</th>
+            <th>Patient</th>
+            <th>Dentiste</th>
+            <th>Date</th>
+            <th>Coût</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les données des prothèses seront ajoutées ici dynamiquement -->
+        </tbody>
+      </table>
+      <br>
+    </section>
+
+   
+   
+    <!-- Historique et alertes -->
+    <section class="alerts-history">
+      <h2>Historique et Alertes</h2>
+      <div id="alertMessages"></div>
+    </section>
+<br>
+    <!-- Bouton pour ajouter une prothèse -->
+    <div class="button-container">
+        <button a href="html2.html" id="addProthesisBtn">Ajouter une Prothèse</button>
+
+       
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>  
