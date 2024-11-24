@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de Stock</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-image: url('u.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 100vh;
+        position: relative;
+        color: #040404;
+        font-size: 1.4rem;
+        width:100%;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      box-shadow: 0 2px 4px rgba(94, 227, 254, 0.405);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 {
+      margin: 30px;
+      font-size: 4.0rem;
+    }
+
+    .logo img {
+      margin-top: -12px;
+      height: 40px;
+    }
+
+    .logo h1 {
+      margin-left: -15px;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #000;
+    }
+
+    .logo .highlight {
+      color: #0075FF;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: #353535;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 5px 10px; 
+    }
+
+    .nav a:hover {
+      color: #0075FF;
+      border-bottom: 2px solid #0075FF;
+    }
+
+    .profile-circle {
+      width: 35px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      color: #0075FF;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      line-height: 35px;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(154, 157, 243, 0.275);
+    }
+
+    .gest {
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      margin: 50px;
+      text-align: center;
+      font-size: 3rem;
+      color: #0076fd;
+    }
+
+    .stock-list {
+      margin-bottom: 20px;
+      top: 80%;
+        width: 80%
+      
+    }
+      
+      .suivi-achats {
+          top: 118%;
+          position: absolute;
+          margin-bottom:80px;
+          width: 80%;
+          float: left;
+      }
+
+    table, th, td {
+      border: 1px solid #ddd;
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+      .alert-button {
+    width: 50px;
+    top: 220px;
+    bottom: 10px;
+    right: 60px;
+    height: 50px;
+    border: none;
+     text-align:center;
+     line-height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: #000000;
+    cursor: pointer;
+    position: absolute;
+}
+
+.alert-button:hover {
+    background-color: #d13030; /* Adjust the color as needed */
+}
+
+.alert-messages {
+    position: absolute;
+    display: none;
+    top: 100%;
+    bottom: 60px;
+    right: 0;
+    border: 1px solid #ccc;
+    width: 200px;
+    box-shadow: 0 4px rgba(0,0,0,0.2);
+    z-index: 1000;
+    left: 50%;
+    background-color: #d80000; /* Adjust the color as needed */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+   
+}
+
+    th {
+      background-color:#489af8;
+      color: white;
+    }
+      .search-filters input{
+      padding: 10px;
+      margin: 0 20px;
+      width: 40%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      
+         }
+
+    .button-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    button {
+      background-color: #4db7fd;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+      
+
+    button:hover {
+      background-color: #4db7fd;
+    }
+  </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+          <div class="logo">
+            <img src="tooth-icon.jpg.png" alt="Logo">
+            <h1>Cabinet<span class="highlight">Plus</span></h1>
+          </div>
+          <nav class="nav">
+            <a href="#">Accueil</a>
+            <a href="#">Patients</a>
+            <a href="#">Stock</a>
+            <a href="#">Calendrier</a>
+          </nav>
+          <div class="profile-circle">L</div>
+        </div>
+      </header>
+  
+    <h1 class="gest">Gestion de Stock</h1>
+  
+  <!-- Filtres de recherche -->
+  <section class="search-filters">
+    <input type="text" id="searchType" placeholder="Filtrer par Type de Produit">
+    <input type="text" id="searchStatus" placeholder="Filtrer par Statut">
+  </section>
+
+  <div class="container">
+    <!-- Liste des Stocks -->
+    <section class="stock-list">
+      <h2>Liste des Stocks</h2>
+      <table id="stockTable">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Catégorie</th>
+              <th>Date d'Approvisionnement</th>
+            <th>Fournisseur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les données des stocks seront ajoutées ici dynamiquement -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Suivi des Achats -->
+    <section class="suivi-achats">
+      <h2>Suivi des Achats</h2>
+        <table id="orderTable">
+  <thead>
+    <tr>
+      <th>Commande</th>
+      <th>Statut</th>
+      <th>Date</th>
+      <th>Fournisseur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Commande #001</td>
+      <td>En attente</td>
+      <td>2024-11-20</td>
+      <td>MediPro</td>
+    </tr>
+    <tr>
+      <td>Commande #002</td>
+      <td>Livrée</td>
+      <td>2024-11-15</td>
+      <td>PharmaLine</td>
+    </tr>
+    <tr>
+      <td>Commande #003</td>
+      <td>Annulée</td>
+      <td>2024-11-10</td>
+      <td>SurgicalKit</td>
+    </tr>
+  </tbody>
+</table>
+    </section> 
+      <!-- Alertes de Stock -->
+    <section class="alertes-stock">
+        <div class="alert-button" onmouseover="showAlerts()" onmouseout="hideAlerts()">Alertes</div>
+        <div class="alert-messages" id="alertMessages" style="display: none;">
+        </div>     
+
+    </section>
+  </div>
+
+  <script src="script3.js"></script>
+</body>
+</html>
